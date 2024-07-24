@@ -1,0 +1,44 @@
+.projects-page-container {
+  text-align: center;
+  display: grid;
+  gap: 40px;
+  max-width: 80vw;
+  margin: 50px auto;
+  place-items: center;
+  /* background: lightcoral; */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  height: max-content;
+}
+.projects-page-title-container {
+  /* background: lightpink; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.projects-page-title-container h1 {
+  font-size: 2rem;
+}
+
+.projects-page-title-container button {
+  background-color: rgb(251, 233, 34);
+  border: none;
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor:pointer;
+  color: rgb(255, 240, 250);
+}
+.projects-page-title-container button:hover {
+  background-color: rgb(166, 255, 133);
+  border: none;
+  border-radius: 7px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+  cursor:pointer
+}
+
+.projects-page-title-container a {
+  text-decoration: none;
+  color: rgb(52, 52, 52);
+}

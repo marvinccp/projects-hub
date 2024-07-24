@@ -1,0 +1,45 @@
+.notification-delete {
+  background: rgb(251, 112, 93);
+  width: 60%;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2rem;
+  max-width: 600px;
+}
+.project-view-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 500px;
+  /* background: lightpink; */
+  place-content: center;
+  max-width: 1280px;
+  width: 100%;
+}
+.project-details-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: lightcoral;
+  flex-direction: column;
+}
+
+.project-task-view-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(144, 222, 238);
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .project-view-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 400px 400px;
+    place-content: center;
+  }
+}

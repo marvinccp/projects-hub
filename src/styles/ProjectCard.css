@@ -1,0 +1,23 @@
+.project-card-container{
+    width: 270px;
+    height: 110px;
+    background: rgba(202, 202, 202, 0.89);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 15px;
+    color: rgb(49, 49, 49);
+
+}
+.project-card-view-button{
+    background-color: rgb(251, 233, 34);
+    border: none;
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    margin-top: 4px;
+
+}
+.project-card-view-button a{
+    text-decoration: none;
+    color: rgb(95, 95, 95);
+}

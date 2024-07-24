@@ -1,0 +1,19 @@
+.footer-container{
+    width: 100%;
+    height: 10vh;
+    background: linear-gradient(5deg,rgb(122, 122, 122), rgb(69, 69, 69)
+    ) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: lightgray;
+}
+.logo-footer-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* background-color: blue; */
+    height: 7vh;
+    width: 70%;
+}

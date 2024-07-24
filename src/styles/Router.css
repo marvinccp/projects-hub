@@ -1,0 +1,44 @@
+*{
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    /* background-color: aqua;  */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+  }
+  
+  .nav-buttons {
+    margin-bottom: 20px;
+  }
+  
+  .nav-buttons button {
+    margin-right: 10px;
+  }
+  
+  .content {
+    padding: 20px;
+    border: 1px solid #ddd;
+  }
+
+  .router-button--{
+    background-color: rgb(70, 70, 70);
+    border: none;
+    border-radius: 7px;
+    padding: 5px 10px;
+    font-size: 0.9rem;
+
+}
+.router-button-- a{
+    text-decoration: none;
+    color: rgb(232, 232, 232);
+}
+
