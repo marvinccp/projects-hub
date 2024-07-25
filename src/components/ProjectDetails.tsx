@@ -2,9 +2,9 @@ import { startTransition, useEffect, useState } from "react";
 import { getProjects } from "../helpers/getData";
 import { Project as projecType } from "../interfaces/types";
 import { useLocation } from "wouter";
-import "../styles/Project.css";
+import "../styles/ProjectDetails.css";
 
-export const Project = ({ id }: { id: string }) => {
+export const ProjectDetails = ({ id }: { id: string }) => {
   const [projects, setProjects] = useState<projecType[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [, setLocation] = useLocation();
@@ -109,8 +109,15 @@ export const Project = ({ id }: { id: string }) => {
           <p>
             Nombre: <span>{project?.title}</span>
           </p>
-          <p>
-            Estado: <span>{project?.active ? "Activo" : "Inactivo"}</span>
+          <p className="active-inactive-container">
+            Estado:{" "}
+            <span>
+              {project?.active ? (
+                <span className="project-active">Activo</span>
+              ) : (
+                <span className="project-inactive">Inactivo</span>
+              )}
+            </span>
           </p>
           <p>
             Tiempo de Ejecución: <span>{project?.time} Días</span>
@@ -133,32 +140,25 @@ export const Project = ({ id }: { id: string }) => {
               placeholder="Task Description"
               value={data.task}
             />
-            {/* <input
-            checked={data.state}
-            type="checkbox"
-            id="state"
-            onChange={formData}
-            name="state"
-            />
-          <label htmlFor="state">Task State</label> */}
+
             <input type="submit" value="create Task" />
           </form>
         </section>
       </article>
       <div className="project-task-view-container">
         <div className="project-task-title-container">
-
-        <h2>Tasks</h2>
+          <h2>Tasks</h2>
         </div>
         <section className="tasks-container">
-        {project?.tasks.map((task) => (
-          <div key={task.id}>
-            <p>{task.task}</p>
-            <div></div>
-          </div>
-        ))}
+          {project?.tasks.map((task) => (
+            <div className="task-info-container" key={task.id}>
+              <div className="task-view">
+                <p>{task.task} </p>
+                <span className="pending">{task.state ? "Completed" : "Pending"}</span>
+              </div>
+            </div>
+          ))}
         </section>
-        
       </div>
     </section>
   );

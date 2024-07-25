@@ -10,14 +10,16 @@
   font-size: 1.2rem;
   max-width: 600px;
 }
+
 .project-view-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 500px;
+  grid-template-rows: 650px;
   /* background: lightpink; */
   place-content: center;
   max-width: 1280px;
   width: 100%;
+  padding: 10px;
 }
 .project-details-container {
   display: flex;
@@ -25,20 +27,25 @@
   align-items: center;
   /* background: lightcoral; */
   flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .project-task-view-container {
   display: grid;
-  grid-template-columns: 500px;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr 5fr;
-  background: rgb(144, 222, 238);
+  /* background: rgb(144, 222, 238); */
+  padding: 20px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .task-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background: lightpink; */
+  /* background: rgb(224, 12, 44); */
   width: 85%;
   height: 20%;
 
@@ -91,7 +98,7 @@
   background: rgb(227, 227, 227);
   width: 85%;
   height: 250px;
-  overflow-y: auto;
+  /* overflow-y: auto; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -134,7 +141,68 @@
   .project-view-container {
     display: grid;
     grid-template-columns: 1fr;
-    grid-template-rows: 400px 400px;
+    grid-template-rows: 500px 500px;
     place-content: center;
+    /* background-color: #f8ff33; */
   }
+}
+.active-inactive-container {
+  width: 100px;
+  display: flex;
+  gap: 10px;
+
+}
+
+.project-active {
+  background: lightgreen;
+  width: 70px;
+  height: 18px;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+.project-inactive {
+  background: rgb(255, 119, 98);
+  width: 70px;
+  height: 18px;
+  border-radius: 5px;
+  text-indent: 10px;
+}
+.pending{
+  background: rgb(255, 119, 98);
+  width: 60px;
+  height: 20px;
+  border-radius: 5px;
+  font-size: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.project-task-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tasks-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  border-radius: 6px;
+  width: 100%;
+  padding: 35px 35px 35px 35px;
+  height: 100%;
+  max-height: 500px;
+  overflow-y: auto;
+  background: rgb(227, 227, 227);
+  border-radius: 10px;
+}
+
+.tasks-container p {
+  margin-bottom: 10px;
+}
+
+.task-view{
+  display: flex;
+  gap: 10px;
 }

@@ -1,8 +1,8 @@
 import { Route } from "wouter";
-import { Project } from "./Project";
 import { lazy, Suspense } from "react";
 import { Home } from "./Home";
 import '../styles/Router.css'
+import { ProjectDetails } from "./ProjectDetails";
 
 export const Router = () => {
   const ProjectsPage = lazy(() => import("./ProjectsPage"));
@@ -23,7 +23,7 @@ export const Router = () => {
         <Route path={"/"} component={() => <Home />} />
         <Route path={"/create-project"} component={() => <ProjectsForm />} />
         <Route path={"/projects/:id"}>
-          {(params) => <Project id={params.id} />}
+          {(params) => <ProjectDetails id={params.id} />}
         </Route>
       </Suspense>
     </section>
