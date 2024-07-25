@@ -30,11 +30,13 @@ const ProjectsForm = () => {
     time: number;
     userId: [] | null;
     title: string;
+    active: boolean;
   }>({
     project: "",
     time: 0,
     userId: null,
     title: "",
+    active: true,
   });
   console.table(data);
   const formData = (
@@ -42,13 +44,14 @@ const ProjectsForm = () => {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
       | React.ChangeEvent<HTMLTextAreaElement>
+  
   ) => {
     console.log(e.target.type);
-    const { value, name } = e.target;
-    console.log(value);
+    const { value, name, type, checked } =  e.target as HTMLInputElement;
+    console.log(value, checked);
     setData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name]: type === "chekbox" ? checked : value,
     }));
   };
 
@@ -59,6 +62,7 @@ const ProjectsForm = () => {
       time: Number(data.time),
       userId: data.userId ? [data.userId] : null,
       title: data.title,
+      active: data.active,
     };
     console.log(dataToSend);
     const response = await fetch(
@@ -75,7 +79,7 @@ const ProjectsForm = () => {
       throw new Error("Network response was not ok");
     }
     await response.json();
-    setData({ project: "", time: 30, userId: null, title: "" });
+    setData({ project: "", time: 30, userId: null, title: "", active: true });
     setNotification(true);
     setTimeout(() => {
       setLocation("/projects");
@@ -92,11 +96,18 @@ const ProjectsForm = () => {
       </section>
       <section className="projects-form-container">
         <form className="form" onSubmit={handleData}>
-          <input 
-          type="text" 
-          name="title" 
-          value={data.title}
-          onChange={formData} 
+          {/* <input
+            type="checkbox"
+            name="active"
+            id="active"
+            checked={data.active}
+          /> */}
+          <input
+            type="text"
+            name="title"
+            value={data.title}
+            onChange={formData}
+            placeholder="Project Title"
           />
 
           <select name="time" id="time-select" onChange={formData}>

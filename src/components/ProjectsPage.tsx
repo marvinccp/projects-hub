@@ -24,7 +24,7 @@ const ProjectsPage = () => {
 
 
   return (
-    <section>
+    <section className="project-page-wrap-container">
       <section className="projects-page-title-container">
         <h1>Projects</h1>
         <button>

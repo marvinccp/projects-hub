@@ -1,5 +1,5 @@
 .notification-delete {
-  /* background: rgb(251, 112, 93); */
+  background: rgb(251, 112, 93);
   width: 60%;
   height: 50px;
   display: flex;
@@ -25,18 +25,16 @@
   align-items: center;
   /* background: lightcoral; */
   flex-direction: column;
-  
 }
 
 .project-task-view-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 500px;
+  grid-template-rows: 1fr 5fr;
   background: rgb(144, 222, 238);
-  flex-direction: column;
 }
 
-.task-form-container{
+.task-form-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -84,13 +82,12 @@
   transition: border-color 0.3s ease;
 }
 
-
 .taskform input:focus {
   border-color: #f8ff33;
   outline: none;
 }
 
-.project-info-container{
+.project-info-container {
   background: rgb(227, 227, 227);
   width: 85%;
   height: 250px;
@@ -100,15 +97,15 @@
   align-items: center;
   border-radius: 6px;
 }
-.project-description-container{
+.project-description-container {
   height: 80%;
   width: 90%;
   /* background: lightpink; */
   font-size: 1rem;
   overflow-y: auto;
-  max-height: 200px
+  max-height: 200px;
 }
-.project-description-container p{
+.project-description-container p {
   margin-bottom: 10px;
 }
 
@@ -120,7 +117,7 @@
   gap: 3px;
   flex-direction: column;
 }
-.project-identify-container button{
+.project-identify-container button {
   background: rgb(255, 100, 100);
   margin-bottom: 15px;
   height: 25px;
@@ -128,9 +125,9 @@
   border: none;
   border-radius: 5px;
   color: white;
-cursor: pointer;
+  cursor: pointer;
 }
-.project-info-container{
+.project-info-container {
   line-height: 1.5rem;
 }
 @media (max-width: 768px) {

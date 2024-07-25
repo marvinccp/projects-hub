@@ -20,7 +20,7 @@ export interface Task {
 export interface Project {
   id: string;
   title:string;
-  active:boolean
+  active:boolean;
   project: string;
   time: number;
   userId: string | null;

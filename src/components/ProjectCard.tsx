@@ -9,7 +9,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
     <article className="project-card-container">
       <div key={project.id}>
-        <h4>{project.project}</h4>
+        <h4>{project.title}</h4>
         <button className="project-card-view-button">
           <Link to={`/projects/${project.id}`} state={project}>
             View Project

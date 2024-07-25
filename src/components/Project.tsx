@@ -56,14 +56,9 @@ export const Project = ({ id }: { id: string }) => {
   };
 
   const project = projects.find((p) => p.id === id);
+
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (notification) {
-    return (
-      <div className="notification-delete">Project deleted successfully</div>
-    );
   }
 
   const formData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -101,11 +96,22 @@ export const Project = ({ id }: { id: string }) => {
       )
     );
   };
+  if (notification) {
+    return (
+      <div className="notification-delete">Project deleted successfully</div>
+    );
+  }
   return (
     <section className="project-view-container">
       <article className="project-details-container">
         <div className="project-identify-container">
           <button onClick={() => deleteProject(id)}>Delete Project</button>
+          <p>
+            Nombre: <span>{project?.title}</span>
+          </p>
+          <p>
+            Estado: <span>{project?.active ? "Activo" : "Inactivo"}</span>
+          </p>
           <p>
             Tiempo de Ejecución: <span>{project?.time} Días</span>
           </p>
@@ -140,28 +146,19 @@ export const Project = ({ id }: { id: string }) => {
         </section>
       </article>
       <div className="project-task-view-container">
+        <div className="project-task-title-container">
+
         <h2>Tasks</h2>
+        </div>
+        <section className="tasks-container">
         {project?.tasks.map((task) => (
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              gap: "10px",
-            }}
-            key={task.id}
-          >
+          <div key={task.id}>
             <p>{task.task}</p>
-            <div
-              style={{
-                display: "inline-block",
-                backgroundColor: task.state ? "green" : "red",
-                width: "10px",
-                height: "10px",
-              }}
-            ></div>
+            <div></div>
           </div>
         ))}
+        </section>
+        
       </div>
     </section>
   );
