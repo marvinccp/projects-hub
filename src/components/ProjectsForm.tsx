@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { User } from "../interfaces/types";
 import { getUsers } from "../helpers/getData";
 import { useLocation } from "wouter";
-import '../styles/projectsFormPage.css'
-import brain from '../assets/cerebro-ideia.gif'
+import "../styles/projectsFormPage.css";
+import brain from "../assets/cerebro-ideia.gif";
 const timeOption = [
   { text: "15 Días", time: 15 },
   { text: "30 Días", time: 30 },
@@ -29,10 +29,12 @@ const ProjectsForm = () => {
     project: string;
     time: number;
     userId: [] | null;
+    title: string;
   }>({
     project: "",
     time: 0,
     userId: null,
+    title: "",
   });
   console.table(data);
   const formData = (
@@ -56,6 +58,7 @@ const ProjectsForm = () => {
       project: data.project,
       time: Number(data.time),
       userId: data.userId ? [data.userId] : null,
+      title: data.title,
     };
     console.log(dataToSend);
     const response = await fetch(
@@ -72,7 +75,7 @@ const ProjectsForm = () => {
       throw new Error("Network response was not ok");
     }
     await response.json();
-    setData({ project: "", time: 30, userId: null });
+    setData({ project: "", time: 30, userId: null, title: "" });
     setNotification(true);
     setTimeout(() => {
       setLocation("/projects");
@@ -84,12 +87,17 @@ const ProjectsForm = () => {
 
   return (
     <section className="projects-form-page-container">
-       <section className="projects-image-container">
+      <section className="projects-image-container">
         <img src={brain} />
       </section>
       <section className="projects-form-container">
         <form className="form" onSubmit={handleData}>
-          
+          <input 
+          type="text" 
+          name="title" 
+          value={data.title}
+          onChange={formData} 
+          />
 
           <select name="time" id="time-select" onChange={formData}>
             <option>Estimated Time</option>
@@ -117,7 +125,6 @@ const ProjectsForm = () => {
           <input type="submit" value="Crear Projecto" />
         </form>
       </section>
-     
     </section>
   );
 };

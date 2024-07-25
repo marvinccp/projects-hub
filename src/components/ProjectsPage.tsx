@@ -22,6 +22,7 @@ const ProjectsPage = () => {
     return <div>Loading...</div>; // Indicador de carga
   }
 
+
   return (
     <section>
       <section className="projects-page-title-container">

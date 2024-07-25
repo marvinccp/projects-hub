@@ -9,7 +9,15 @@ export const Project = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [, setLocation] = useLocation();
   const [notification, setNotification] = useState<boolean>(false);
-
+  const [data, setData] = useState<{
+    task: string;
+    state: boolean;
+    projectId: string;
+  }>({
+    task: "",
+    state: false,
+    projectId: id,
+  });
   useEffect(() => {
     startTransition(() => {
       const fetchData = async () => {
@@ -57,30 +65,92 @@ export const Project = ({ id }: { id: string }) => {
       <div className="notification-delete">Project deleted successfully</div>
     );
   }
+
+  const formData = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value, checked, type } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+  };
+
+  const createTask = async () => {
+    const res = await fetch(
+      "https://nest-basic-production.up.railway.app/tasks/",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+
+    !res.ok ? new Error("Failed to create task") : null;
+    const newTask = await res.json();
+    setData({ task: "", state: false, projectId: id });
+    return newTask;
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newTask = await createTask();
+    setProjects((prevProjects) =>
+      prevProjects.map((p) =>
+        p.id === id ? { ...p, tasks: [...p.tasks, newTask] } : p
+      )
+    );
+  };
   return (
     <section className="project-view-container">
       <article className="project-details-container">
-        <button onClick={() => deleteProject(id)}>Delete Project</button>
-        <p>id: {project?.id}</p>
-        <h1>{project?.project}</h1>
-        <p>Tiempo de Ejecución</p>
-        <h2>{project?.time} Días</h2>
-        <form>
-          <input type="text" name="" id="" />
-          <input type="text" name="" id="" />
-          <input type="text" name="" id="" />
-          <input type="submit" value="create Task" />
-        </form>
+        <div className="project-identify-container">
+          <button onClick={() => deleteProject(id)}>Delete Project</button>
+          <p>
+            Tiempo de Ejecución: <span>{project?.time} Días</span>
+          </p>
+          <p>id: {project?.id}</p>
+        </div>
+        <section className="project-info-container">
+          <div className="project-description-container">
+            {project?.project.split("\n").map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
+          </div>
+        </section>
+        <section className="task-form-container">
+          <form className="taskform" onSubmit={handleSubmit}>
+            <input
+              onChange={formData}
+              type="text"
+              name="task"
+              placeholder="Task Description"
+              value={data.task}
+            />
+            {/* <input
+            checked={data.state}
+            type="checkbox"
+            id="state"
+            onChange={formData}
+            name="state"
+            />
+          <label htmlFor="state">Task State</label> */}
+            <input type="submit" value="create Task" />
+          </form>
+        </section>
       </article>
       <div className="project-task-view-container">
         <h2>Tasks</h2>
         {project?.tasks.map((task) => (
-          <div style={{
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "10px",
-          }} key={task.id}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              gap: "10px",
+            }}
+            key={task.id}
+          >
             <p>{task.task}</p>
             <div
               style={{
