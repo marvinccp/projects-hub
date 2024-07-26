@@ -184,6 +184,7 @@ padding-top: 2px;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
 }
 .completed{
   background: rgb(108, 221, 108);
@@ -195,6 +196,8 @@ padding-top: 2px;
   align-items: center;
   justify-content: center;
   border: none;
+  transition: background 0.2s ease, color 0.2s ease;
+
 }
 .project-task-title-container {
   display: flex;
