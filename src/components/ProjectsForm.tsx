@@ -85,6 +85,7 @@ const ProjectsForm = () => {
       setLocation("/projects");
     }, 2000);
   };
+
   if (notification) {
     return <div className="notification">Project created successfully</div>;
   }

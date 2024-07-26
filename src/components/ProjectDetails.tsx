@@ -3,6 +3,8 @@ import { getProjects } from "../helpers/getData";
 import { Project as projecType } from "../interfaces/types";
 import { useLocation } from "wouter";
 import "../styles/ProjectDetails.css";
+import { Switch } from "./Switch";
+import { Trash } from "./Trash";
 
 export const ProjectDetails = ({ id }: { id: string }) => {
   const [projects, setProjects] = useState<projecType[]>([]);
@@ -96,6 +98,39 @@ export const ProjectDetails = ({ id }: { id: string }) => {
       )
     );
   };
+
+  const deleteTask = async (taskId: string) => {
+    try {
+      const response = await fetch(
+        `https://nest-basic-production.up.railway.app/tasks/${taskId}`,
+        {
+          method: "DELETE",
+        }
+      );
+      if (response.ok) {
+        console.log("Task deleted successfully");
+        setProjects((prevProjects) =>
+          prevProjects.map((project) => {
+            if (project.id === id) {
+              const updatedTasks = project.tasks.filter(
+                (task) => task.id !== taskId
+              );
+              return { ...project, tasks: updatedTasks };
+            }
+            return project;
+          })
+        );
+      } else {
+        console.error("Failed to delete task");
+      }
+    } catch (error) {
+      console.error("Error deleting task:", error);
+    }
+  };
+
+
+  
+
   if (notification) {
     return (
       <div className="notification-delete">Project deleted successfully</div>
@@ -154,7 +189,8 @@ export const ProjectDetails = ({ id }: { id: string }) => {
             <div className="task-info-container" key={task.id}>
               <div className="task-view">
                 <p>{task.task} </p>
-                <span className="pending">{task.state ? "Completed" : "Pending"}</span>
+                <Switch taskId={task.id} state={task.state} />
+                <Trash deleteTask={() => deleteTask(task.id)} />
               </div>
             </div>
           ))}

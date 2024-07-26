@@ -145,37 +145,56 @@
     place-content: center;
     /* background-color: #f8ff33; */
   }
+  .notification-delete{
+    font-size: 0.9rem;
+  }
 }
 .active-inactive-container {
-  width: 100px;
+  width: 150px;
   display: flex;
   gap: 10px;
-
 }
 
 .project-active {
   background: lightgreen;
-  width: 70px;
-  height: 18px;
+  width: 80px;
+  height: 20px;
   border-radius: 5px;
-  text-indent: 10px;
+  display: block;
+  text-align: center;
+padding-top: 2px;
 }
 .project-inactive {
   background: rgb(255, 119, 98);
-  width: 70px;
-  height: 18px;
+  width: 80px;
+  height: 20px;
   border-radius: 5px;
-  text-indent: 10px;
+  display: block;
+  text-align: center;
+  align-content: space-around;
+  padding-top: 2px;
+
 }
 .pending{
   background: rgb(255, 119, 98);
-  width: 60px;
+  width: 80px;
   height: 20px;
   border-radius: 5px;
   font-size: .8rem;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.completed{
+  background: rgb(108, 221, 108);
+  width: 80px;
+  height: 20px;
+  border-radius: 5px;
+  font-size: .8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
 }
 .project-task-title-container {
   display: flex;
@@ -190,12 +209,14 @@
   flex-direction: column;
   border-radius: 6px;
   width: 100%;
-  padding: 35px 35px 35px 35px;
+  padding: 25px 20px 25px 20px;
   height: 100%;
   max-height: 500px;
   overflow-y: auto;
   background: rgb(227, 227, 227);
   border-radius: 10px;
+  gap: 20px;
+  border-bottom: 1px rgb(216, 216, 216) solid;
 }
 
 .tasks-container p {
@@ -203,6 +224,42 @@
 }
 
 .task-view{
-  display: flex;
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
   gap: 10px;
+  align-items: center;
+  background:rgb(217, 217, 217);
+  place-content: center;
+  padding: 10px 0px 0 12px;
+  min-width: 100%;
+  height: max-content;
+  border-radius: 5px;
+}
+
+.switch-container{
+  border: none;
+  display: flex;
+  color: #f9f9f9;
+  width: 90px;
+  height: 26px;
+  justify-content: center;
+  align-items: flex-start;
+  background: none;
+  cursor: pointer;
+}
+.trash-container{
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border: none;
+  background: rgb(217, 217, 217);
+  cursor: pointer;
+}
+.trash-icon{
+  width: 70%;
+  border: none;
+  padding-bottom: 5px;
+
 }
