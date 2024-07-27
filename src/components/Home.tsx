@@ -37,10 +37,10 @@ export const Home = () => {
       </p>
       <div className="buttons-menu-homepage-container">
         <Link to="/projects">
-        <button>Projects</button>
+        <button className="principal-button">Projects</button>
         </Link>
         <Link to="/create-project">
-        <button>Create Projects</button>
+        <button className="contrast-button">Create Projects</button>
         </Link>
       </div>
      <section>

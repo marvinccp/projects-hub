@@ -1,5 +1,5 @@
 import "../styles/Header.css";
-import logo from '../assets/logo-ph.png'
+import logo from '../assets/logo2.png'
 import { Link } from "wouter";
 
 export const Header = () => {

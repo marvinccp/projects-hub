@@ -34,10 +34,10 @@ console.log(colorMap);
   }, []);
 
   const deleteProject = async (id: string) => {
-    const confirmDelete = window.confirm(
+    const confirmDeletePorject = window.confirm(
       "Are you sure you want to delete this project?"
     );
-    if (!confirmDelete) return;
+    if (!confirmDeletePorject) return;
     try {
       const res = await fetch(
         `https://nest-basic-production.up.railway.app/projects/${id}`,
@@ -109,6 +109,10 @@ console.log(colorMap);
   };
 
   const deleteTask = async (taskId: string) => {
+    const confirmDeleteTask = window.confirm(
+      "Are you sure you want to delete this task?"
+    );
+    if(!confirmDeleteTask) return
     try {
       const response = await fetch(
         `https://nest-basic-production.up.railway.app/tasks/${taskId}`,
