@@ -11,6 +11,8 @@ export const ProjectDetails = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [, setLocation] = useLocation();
   const [notification, setNotification] = useState<boolean>(false);
+  const [colorMap, setColorMap] = useState<{ [key: string]: boolean }>({});
+console.log(colorMap);
   const [data, setData] = useState<{
     task: string;
     state: boolean;
@@ -99,6 +101,13 @@ export const ProjectDetails = ({ id }: { id: string }) => {
     );
   };
 
+  const changeColor = (taskId: string) => {
+    setColorMap((colorMap) => ({
+      ...colorMap,
+      [taskId]: !colorMap[taskId],
+    }));
+  };
+
   const deleteTask = async (taskId: string) => {
     try {
       const response = await fetch(
@@ -128,14 +137,12 @@ export const ProjectDetails = ({ id }: { id: string }) => {
     }
   };
 
-
-  
-
   if (notification) {
     return (
       <div className="notification-delete">Project deleted successfully</div>
     );
   }
+
   return (
     <section className="project-view-container">
       <article className="project-details-container">
@@ -188,9 +195,25 @@ export const ProjectDetails = ({ id }: { id: string }) => {
           {project?.tasks.map((task) => (
             <div className="task-info-container" key={task.id}>
               <div className="task-view">
-                <p>{task.task} </p>
-                <Switch taskId={task.id} state={task.state} />
-                <Trash deleteTask={() => deleteTask(task.id)} />
+                <header>
+                  <p
+                    className={`${
+                      colorMap[task.id]
+                        ? "complete-text"
+                        : null
+                    }`}
+                  >
+                    {task.task}
+                  </p>
+                </header>
+                <footer>
+                  <Switch
+                    changeColor={() => changeColor(task.id)}
+                    taskId={task.id}
+                    state={task.state}
+                  />
+                  <Trash deleteTask={() => deleteTask(task.id)} />
+                </footer>
               </div>
             </div>
           ))}

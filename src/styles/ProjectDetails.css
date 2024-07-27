@@ -186,6 +186,9 @@ padding-top: 2px;
   justify-content: center;
   transition: background 0.2s ease, color 0.2s ease;
 }
+.complete-text{
+  color: rgb(195, 195, 195);
+}
 .completed{
   background: rgb(108, 221, 108);
   width: 80px;
@@ -196,6 +199,7 @@ padding-top: 2px;
   align-items: center;
   justify-content: center;
   border: none;
+  color: #ffffff;
   transition: background 0.2s ease, color 0.2s ease;
 
 }
@@ -223,17 +227,35 @@ padding-top: 2px;
 }
 
 .tasks-container p {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  /* background: lightgreen; */
 }
 
 .task-view{
   display: grid;
-  grid-template-columns: 8fr 1fr 1fr;
+  grid-template-columns: 8fr 2fr;
   gap: 10px;
   align-items: center;
   background:rgb(217, 217, 217);
   place-content: center;
   padding: 10px 0px 0 12px;
+  min-width: 100%;
+  height: max-content;
+  border-radius: 5px;
+}
+.task-view footer{
+  display: flex;
+  align-items: center;
+ 
+}
+.task-view{
+  display: grid;
+  grid-template-columns: 8fr 2fr;
+  gap: 10px;
+  align-items: center;
+  background:rgb(217, 217, 217);
+  place-content: center;
+  padding: 10px 7px 0 12px;
   min-width: 100%;
   height: max-content;
   border-radius: 5px;
@@ -263,6 +285,20 @@ padding-top: 2px;
 .trash-icon{
   width: 70%;
   border: none;
-  padding-bottom: 5px;
+  padding: 0 0 6px 0;
 
+}
+@media(max-width:864px){
+  .task-view{
+    display: grid;
+    /* background: lightblue; */
+    grid-template-columns: 90%;
+    grid-template-rows: auto;
+    min-width: 90%;
+  }
+  .task-view footer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
 }

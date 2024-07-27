@@ -4,14 +4,11 @@ import "../styles/ProjectDetails.css";
 interface SwitchProps {
   state: boolean;
   taskId: string;
+  changeColor: () => void
 }
 
-export const Switch = ({ state, taskId }: SwitchProps) => {
+export const Switch = ({ state, taskId, changeColor}: SwitchProps) => {
   const [active, setActive] = useState(state);
-  console.log(state);
-  console.log(active);
-  console.log(taskId);
-
   const handleSwitch = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
@@ -29,7 +26,9 @@ export const Switch = ({ state, taskId }: SwitchProps) => {
       if (!response.ok) {
         throw new Error("Failed to update task state");
       }
+      
       setActive(!active);
+      changeColor()
       return response;
     } catch (error) {
       console.error("Error updating task state:", error);
