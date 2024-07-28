@@ -15,6 +15,8 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  margin: 30px 0 0 0;
+
 }
 .projects-page-title-container h1 {
   font-size: 2rem;
@@ -46,6 +48,6 @@
 .project-page-wrap-container{
   /* background: lightblue; */
   min-height: 75vh;
-  margin: 70px 0 0 0;
+  margin: 0 0 0 0;
 }
 

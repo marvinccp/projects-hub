@@ -1,3 +1,4 @@
+
 .notification-delete {
   background: rgb(251, 112, 93);
   width: 60%;
@@ -20,7 +21,7 @@
   max-width: 1280px;
   width: 100%;
   padding: 10px;
-  margin: 50px 0;
+  margin: 0 0;
 }
 .project-details-container {
   display: flex;
@@ -29,7 +30,7 @@
   /* background: lightcoral; */
   flex-direction: column;
   width: 100%;
-  margin: 0 auto;
+  margin: 35px auto 0 auto;
 }
 
 .project-task-view-container {
@@ -37,7 +38,7 @@
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 5fr;
   /* background: rgb(144, 222, 238); */
-  padding: 20px;
+  padding: 0 20px 20px 20px;
   width: 100%;
   margin: 0 auto;
 }

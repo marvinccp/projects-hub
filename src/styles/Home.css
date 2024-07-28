@@ -1,12 +1,20 @@
 .home-container {
   width: 80%;
-  max-width: 1280px;
+  max-width: 1100px;
   min-height: 70vh;
   /* background: lightskyblue; */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+.welcome-home-container{
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+.welcome-home-section{
+  padding: 0 70px 0 0;
+}
+
 .home-container p {
   line-height: 1.8rem;
 }
@@ -19,7 +27,7 @@
 }
 .home-title-container h1 {
   font-size: 2.5rem;
-  margin-top: 30px;
+  margin-top: 50px;
 }
 .home-container p {
   font-size: 1.2rem;
@@ -33,13 +41,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 40px;
+  margin: 40px 0 40px 0;
   gap: 15px;
+}
+button{
+  height: 40px;
+  width: 200px;
 }
 
 .contrast-button {
-  height: 33px;
-  width: 170px;
+
   border: none;
   border-radius: 7px;
   font-size: 1rem;
@@ -47,8 +58,7 @@
   cursor: pointer;
 }
 .contrast-button:hover {
-  height: 33px;
-  width: 170px;
+ 
   background: linear-gradient(10deg, rgb(209, 209, 209), rgb(215, 215, 215));
   border: none;
   border-radius: 7px;
@@ -57,8 +67,7 @@
 }
 
 .principal-button {
-  height: 33px;
-  width: 170px;
+  
   background-color: rgb(251, 233, 34);
   border: none;
   border-radius: 7px;
@@ -69,11 +78,32 @@
 .principal-button:hover {
   background: linear-gradient(rgb(251, 233, 34), rgb(255, 241, 111));
 }
+
+.team-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.article-user-container{
+  width: 100%;
+  height: 400px;
+  display: flex;
+  overflow-x: scroll;
+  gap:30px;
+  background: lightblue;
+  margin: 0 0 50px 0;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+}
+
+
 @media (min-width: 768px) {
   .buttons-menu-homepage-container {
-    flex-direction: row;
     gap: 15px;
     margin-top: 100px;
+    flex-direction: column;
   }
   .home-title-container h1 {
     font-size: 4rem;
@@ -82,4 +112,15 @@
     font-size: 2.2rem;
     margin: 30px 0px;
   }
+
+}
+
+@media(max-width:768px){
+  .welcome-home-container{
+    grid-template-columns: 1fr;
+  }
+  .welcome-home-section{
+    padding: 0 0 0 0;
+  }
+  
 }

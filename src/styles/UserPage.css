@@ -1,0 +1,22 @@
+.user-card{
+    position: relative;
+    scroll-snap-align: center;
+    margin: 30px 15px;
+
+    width: 300px;
+    height: 320px;
+    background: lightgreen;
+    border: none;
+    outline: 1px solid rgb(166, 166, 166);
+    border-radius: 5px;
+}
+.user-card img{
+    width:  100%;
+}
+.user-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 8; 
+    -webkit-box-orient: vertical; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }
