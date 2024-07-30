@@ -1,6 +1,6 @@
 import { startTransition, useEffect, useState } from "react";
-import { getProjects } from "../helpers/getData";
-import { Project as projecType } from "../interfaces/types";
+import { getClients, getProjects } from "../helpers/getData";
+import { Client, Project as projecType } from "../interfaces/types";
 import { useLocation } from "wouter";
 import "../styles/ProjectDetails.css";
 import { Switch } from "./Switch";
@@ -8,11 +8,12 @@ import { Trash } from "./Trash";
 
 export const ProjectDetails = ({ id }: { id: string }) => {
   const [projects, setProjects] = useState<projecType[]>([]);
+  const [clients, setClient] = useState<Client[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [, setLocation] = useLocation();
   const [notification, setNotification] = useState<boolean>(false);
   const [colorMap, setColorMap] = useState<{ [key: string]: boolean }>({});
-console.log(colorMap);
+  console.log(colorMap);
   const [data, setData] = useState<{
     task: string;
     state: boolean;
@@ -31,6 +32,12 @@ console.log(colorMap);
       };
       fetchData();
     });
+
+    const fetchClients = async () => {
+      const dataClients = await getClients();
+      setClient(dataClients);
+    };
+    fetchClients();
   }, []);
 
   const deleteProject = async (id: string) => {
@@ -60,6 +67,13 @@ console.log(colorMap);
   };
 
   const project = projects.find((p) => p.id === id);
+  console.log(project?.id);
+  const dataClient = () => {
+    const dataClient = clients.find(
+      (client) => client.id === project?.clientId
+    );
+    return `${dataClient?.name} ${dataClient?.last}`
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -112,7 +126,7 @@ console.log(colorMap);
     const confirmDeleteTask = window.confirm(
       "Are you sure you want to delete this task?"
     );
-    if(!confirmDeleteTask) return
+    if (!confirmDeleteTask) return;
     try {
       const response = await fetch(
         `https://nest-basic-production.up.railway.app/tasks/${taskId}`,
@@ -168,7 +182,7 @@ console.log(colorMap);
           <p>
             Tiempo de Ejecución: <span>{project?.time} Días</span>
           </p>
-          <p>id: {project?.id}</p>
+          <p>id:  {dataClient()}</p>
         </div>
         <section className="project-info-container">
           <div className="project-description-container">
@@ -201,11 +215,7 @@ console.log(colorMap);
               <div className="task-view">
                 <header>
                   <p
-                    className={`${
-                      colorMap[task.id]
-                        ? "complete-text"
-                        : null
-                    }`}
+                    className={`${colorMap[task.id] ? "complete-text" : null}`}
                   >
                     {task.task}
                   </p>

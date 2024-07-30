@@ -3,6 +3,8 @@ import { lazy, Suspense } from "react";
 import { Home } from "./Home";
 import '../styles/Router.css'
 import { ProjectDetails } from "./ProjectDetails";
+import { UserForm } from "./UserForm";
+import { ClientForm } from "./ClientForm";
 
 export const Router = () => {
   const ProjectsPage = lazy(() => import("./ProjectsPage"));
@@ -22,6 +24,8 @@ export const Router = () => {
         <Route path={"/projects"} component={() => <ProjectsPage />} />
         <Route path={"/"} component={() => <Home />} />
         <Route path={"/create-project"} component={() => <ProjectsForm />} />
+        <Route path={"/create-user"} component={() => <UserForm />} />
+        <Route path={"/create-client"} component={() => <ClientForm />} />
         <Route path={"/projects/:id"}>
           {(params) => <ProjectDetails id={params.id} />}
         </Route>

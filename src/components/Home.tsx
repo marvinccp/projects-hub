@@ -1,10 +1,15 @@
 import { Link } from "wouter";
+import { useState } from "react";
 import "../styles/Home.css";
+import "../styles/ModalStyles.css";
+
+import { Dialog, Heading, Modal } from "react-aria-components";
 // import { useEffect, useState } from "react";
 // import { getUsers } from "../helpers/getData";
 // import { User } from "../interfaces/types";
 // import { UserPage } from "./UserPage";
-
+import { UserForm } from "./UserForm";
+import { ClientForm } from "./ClientForm";
 export const Home = () => {
   // const [users, setUsers] = useState<User[]>([]);
   // useEffect(() => {
@@ -14,6 +19,8 @@ export const Home = () => {
   //   };
   //   fetchUsers();
   // }, []);
+  const [isOpenUser, setOpenUser] = useState<boolean>(false);
+  const [isOpenClient, setOpenClient] = useState<boolean>(false);
 
   return (
     <section className="home-container">
@@ -37,23 +44,65 @@ export const Home = () => {
           <Link to="/projects">
             <button className="principal-button">Projects</button>
           </Link>
-          <Link to="/create-project">
+          {/* <Link to="/create-project">
             <button className="contrast-button">Create Projects</button>
-          </Link>
+          </Link> */}
+
+          <button
+            onClick={() => setOpenUser((prev) => !prev)}
+            className="contrast-button"
+          >
+            Create User
+          </button>
+
+          <button
+            onClick={() => setOpenClient((prev) => !prev)}
+            className="contrast-button"
+          >
+            Create Client
+          </button>
         </div>
       </section>
       {/* team contaner */}
 
       <section className="team-container">
-        <div>
-          {/* <h2>Our Team</h2> */}
-        </div>
+        <div>{/* <h2>Our Team</h2> */}</div>
         {/* <section className="article-user-container">
           {users.map((user) => (
             <UserPage user={user} key={user.id}></UserPage>
           ))}
         </section> */}
       </section>
+      <>
+        <Modal
+          isOpen={isOpenClient}
+          onOpenChange={setOpenClient}
+          className={"modal"}
+          isDismissable
+        >
+          <Heading slot="mmmmm">
+            <Dialog>
+             <ClientForm />
+            </Dialog>
+          </Heading>
+        </Modal>
+      </>
+
+      <>
+        <Modal
+          isOpen={isOpenUser}
+          onOpenChange={setOpenUser}
+          className={"modal"}
+          isDismissable
+        >
+          <Heading slot="title">
+            <Dialog>
+              <UserForm />
+            </Dialog>
+          </Heading>
+        </Modal>
+      </>
+      
     </section>
   );
 };

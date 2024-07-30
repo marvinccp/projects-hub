@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { User } from "../interfaces/types";
-import { getUsers } from "../helpers/getData";
+import { Client, User } from "../interfaces/types";
+import { getClients, getUsers } from "../helpers/getData";
 import { useLocation } from "wouter";
 import "../styles/projectsFormPage.css";
 import brain from "../assets/cerebro-ideia.gif";
@@ -17,12 +17,19 @@ const ProjectsForm = () => {
   const [notification, setNotification] = useState<boolean>(false);
 
   const [users, setUsers] = useState<User[]>([]);
+  const [clients, setClients] = useState<Client[]>([]);
+  console.log(clients);
   useEffect(() => {
     const fetchUsers = async () => {
       const data = await getUsers();
       setUsers(data);
     };
+    const fetchClients = async () => {
+      const client = await getClients();
+      setClients(client);
+    };
     fetchUsers();
+    fetchClients();
   }, []);
 
   const [data, setData] = useState<{
@@ -31,12 +38,14 @@ const ProjectsForm = () => {
     userId: [] | null;
     title: string;
     active: boolean;
+    clientId: string;
   }>({
     project: "",
     time: 0,
     userId: null,
     title: "",
     active: true,
+    clientId: "",
   });
   console.table(data);
   const formData = (
@@ -44,10 +53,9 @@ const ProjectsForm = () => {
       | React.ChangeEvent<HTMLInputElement>
       | React.ChangeEvent<HTMLSelectElement>
       | React.ChangeEvent<HTMLTextAreaElement>
-  
   ) => {
     console.log(e.target.type);
-    const { value, name, type, checked } =  e.target as HTMLInputElement;
+    const { value, name, type, checked } = e.target as HTMLInputElement;
     console.log(value, checked);
     setData((prevData) => ({
       ...prevData,
@@ -63,6 +71,7 @@ const ProjectsForm = () => {
       userId: data.userId ? [data.userId] : null,
       title: data.title,
       active: data.active,
+      clientId:data.clientId
     };
     console.log(dataToSend);
     const response = await fetch(
@@ -79,7 +88,14 @@ const ProjectsForm = () => {
       throw new Error("Network response was not ok");
     }
     await response.json();
-    setData({ project: "", time: 30, userId: null, title: "", active: true });
+    setData({
+      project: "",
+      time: 30,
+      userId: null,
+      title: "",
+      active: true,
+      clientId: "",
+    });
     setNotification(true);
     setTimeout(() => {
       setLocation("/projects");
@@ -125,6 +141,14 @@ const ProjectsForm = () => {
             {users.map((user) => (
               <option key={user.id} value={user.id || ""}>
                 {user.name}
+              </option>
+            ))}
+          </select>
+          <select id="client-select" name="clientId" onChange={formData}>
+            <option value="">Client</option>
+            {clients.map((client) => (
+              <option key={client.id} value={client.id || ""}>
+                {client.name }{" "}{client.last}
               </option>
             ))}
           </select>

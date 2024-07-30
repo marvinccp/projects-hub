@@ -19,14 +19,24 @@ export interface Task {
 
 export interface Project {
   id: string;
-  title:string;
-  active:boolean;
+  title: string;
+  active: boolean;
   project: string;
   time: number;
   userId: string | null;
   createdAt: string;
   updateAt: string;
   tasks: Task[];
+  clientId:string
+}
+
+export interface Client {
+  name: string;
+  last: string;
+  email: string;
+  phone: number;
+  cp: number;
+  id:string
 }
 
 export type allUser = User | Task | Project;
