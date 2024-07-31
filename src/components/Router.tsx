@@ -5,6 +5,7 @@ import '../styles/Router.css'
 import { ProjectDetails } from "./ProjectDetails";
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
+import { SignIn } from "./SignIn";
 
 export const Router = () => {
   const ProjectsPage = lazy(() => import("./ProjectsPage"));
@@ -22,7 +23,8 @@ export const Router = () => {
           <Link to="/">Home</Link>
         </button> */}
         <Route path={"/projects"} component={() => <ProjectsPage />} />
-        <Route path={"/"} component={() => <Home />} />
+        <Route path={"/"} component={() => <SignIn />} />
+        <Route path={"/home"} component={() => <Home />} />
         <Route path={"/create-project"} component={() => <ProjectsForm />} />
         <Route path={"/create-user"} component={() => <UserForm />} />
         <Route path={"/create-client"} component={() => <ClientForm />} />
