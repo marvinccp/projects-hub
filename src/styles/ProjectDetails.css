@@ -89,6 +89,7 @@
   box-sizing: border-box;
   font-size: 1rem;
   transition: border-color 0.3s ease;
+  margin-top: 25px;
 }
 
 .taskform input:focus {

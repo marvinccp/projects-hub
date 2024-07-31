@@ -11,7 +11,7 @@
     align-items: center;
     justify-content: center;
     z-index: 100;
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
   
     &[data-entering] {
       animation: modal-fade 200ms;
@@ -62,7 +62,7 @@
 
   .modal{
       width: 350px;
-      height: 65vh;
+      height: 70vh;
       background: rgba(241, 241, 241, 0.699);
       display: flex;
       justify-content: center;
