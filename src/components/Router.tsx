@@ -5,7 +5,7 @@ import '../styles/Router.css'
 import { ProjectDetails } from "./ProjectDetails";
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
-import { SignIn } from "./SignIn";
+import { SignIn } from "./login/SignIn";
 
 export const Router = () => {
   const ProjectsPage = lazy(() => import("./ProjectsPage"));
