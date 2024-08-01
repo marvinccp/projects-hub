@@ -10,7 +10,6 @@ import { Dialog, Heading, Modal } from "react-aria-components";
 // import { UserPage } from "./UserPage";
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
-import { MapProjects } from "./maps/MapProjects";
 export const Home = () => {
   // const [users, setUsers] = useState<User[]>([]);
   // useEffect(() => {
@@ -106,7 +105,6 @@ export const Home = () => {
           </Heading>
         </Modal>
       </>
-      <MapProjects />
     </section>
   );
 };
