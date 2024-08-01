@@ -35,7 +35,7 @@ export const SignIn = () => {
       height:'30px',
     paddingTop:'5px',
     borderRadius:'10px'
-    }}>No eres bienvenido</h1>;
+    }}>No eres bienvenid@</h1>;
   }
   return (
     <form onSubmit={handleLogin}>

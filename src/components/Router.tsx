@@ -24,8 +24,8 @@ export const Router = () => {
           <Link to="/">Home</Link>
         </button> */}
         <Route path={"/projects"} component={() => <ProjectsPage />} />
-        <Route path={"/home"} component={() => <SignIn />} />
-        <Route path={"/"} component={() => <Home />} />
+        <Route path={"/"} component={() => <SignIn />} />
+        <Route path={"/home"} component={() => <Home />} />
         <Route path={"/create-project"} component={() => <ProjectsForm />} />
         <Route path={"/create-user"} component={() => <UserForm />} />
         <Route path={"/create-client"} component={() => <ClientForm />} />

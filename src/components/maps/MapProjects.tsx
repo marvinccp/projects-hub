@@ -6,6 +6,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { LatLngExpression, Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import myIcon from "../../assets/point.gif";
+import { Link } from "wouter";
+import "./MapProjects.css";
 
 export const MapProjects = () => {
   const defaultCenter: LatLngExpression = [40.4168, -3.7038];
@@ -48,9 +50,7 @@ export const MapProjects = () => {
     popupAnchor: [0, -32],
   });
   return (
-    <section style={{
-      background:'red'
-    }}>
+    <section>
       <div>
         <MapContainer
           maxZoom={18}
@@ -65,8 +65,14 @@ export const MapProjects = () => {
               key={index}
               position={[project.coordinates!.lat, project.coordinates!.lon]}
             >
-              <Popup>
-                {project.title} <br /> {project.address}
+              <Popup className="pop-up">
+                <div >
+                  {project.title} <br /> {project.address}
+                  <br /> {project.postalCode}
+                  <Link to={`/projects/${project.id}`}>
+                    <button>View Project</button>
+                  </Link>
+                </div>
               </Popup>
             </Marker>
           ))}

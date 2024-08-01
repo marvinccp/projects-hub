@@ -1,0 +1,15 @@
+.pop-up {
+
+
+  button {
+    background: rgb(255, 255, 92);
+    border: none;
+    text-align: center;
+    margin: 10px 5px 5px 20px;
+    cursor: pointer;
+    border-radius: 7px;
+  }
+  button:hover {
+    background: rgb(255, 255, 56);
+  }
+}
