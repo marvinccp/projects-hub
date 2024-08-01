@@ -10,6 +10,7 @@ import { Dialog, Heading, Modal } from "react-aria-components";
 // import { UserPage } from "./UserPage";
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
+import { MapProjects } from "./maps/MapProjects";
 export const Home = () => {
   // const [users, setUsers] = useState<User[]>([]);
   // useEffect(() => {
@@ -43,6 +44,9 @@ export const Home = () => {
         <div className="buttons-menu-homepage-container">
           <Link to="/projects">
             <button className="principal-button">Projects</button>
+          </Link>
+          <Link to="/map">
+            <button className="principal-button">View Map</button>
           </Link>
           {/* <Link to="/create-project">
             <button className="contrast-button">Create Projects</button>
@@ -102,7 +106,7 @@ export const Home = () => {
           </Heading>
         </Modal>
       </>
-      
+      <MapProjects />
     </section>
   );
 };

@@ -6,6 +6,7 @@ import { ProjectDetails } from "./ProjectDetails";
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
 import { SignIn } from "./login/SignIn";
+import { MapWrapper } from "./MapWrapper";
 
 export const Router = () => {
   const ProjectsPage = lazy(() => import("./ProjectsPage"));
@@ -23,11 +24,12 @@ export const Router = () => {
           <Link to="/">Home</Link>
         </button> */}
         <Route path={"/projects"} component={() => <ProjectsPage />} />
-        <Route path={"/"} component={() => <SignIn />} />
-        <Route path={"/home"} component={() => <Home />} />
+        <Route path={"/home"} component={() => <SignIn />} />
+        <Route path={"/"} component={() => <Home />} />
         <Route path={"/create-project"} component={() => <ProjectsForm />} />
         <Route path={"/create-user"} component={() => <UserForm />} />
         <Route path={"/create-client"} component={() => <ClientForm />} />
+        <Route path={"/map"} component={() => <MapWrapper />} />
         <Route path={"/projects/:id"}>
           {(params) => <ProjectDetails id={params.id} />}
         </Route>

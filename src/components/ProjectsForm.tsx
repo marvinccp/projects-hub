@@ -39,6 +39,8 @@ const ProjectsForm = () => {
     title: string;
     active: boolean;
     clientId: string;
+    postalCode: string;
+    address: string;
   }>({
     project: "",
     time: 0,
@@ -46,6 +48,8 @@ const ProjectsForm = () => {
     title: "",
     active: true,
     clientId: "",
+    postalCode: "",
+    address: "",
   });
   console.table(data);
   const formData = (
@@ -71,7 +75,9 @@ const ProjectsForm = () => {
       userId: data.userId ? [data.userId] : null,
       title: data.title,
       active: data.active,
-      clientId:data.clientId
+      clientId: data.clientId,
+      postalCode: data.postalCode,
+      address: data.address,
     };
     console.log(dataToSend);
     const response = await fetch(
@@ -95,6 +101,8 @@ const ProjectsForm = () => {
       title: "",
       active: true,
       clientId: "",
+      postalCode: "",
+      address: "",
     });
     setNotification(true);
     setTimeout(() => {
@@ -148,10 +156,22 @@ const ProjectsForm = () => {
             <option value="">Client</option>
             {clients.map((client) => (
               <option key={client.id} value={client.id || ""}>
-                {client.name }{" "}{client.last}
+                {client.name} {client.last}
               </option>
             ))}
           </select>
+          <input
+            onChange={formData}
+            type="text"
+            name="address"
+            value={data.address} placeholder="address"
+          />
+          <input
+            onChange={formData}
+            type="text"
+            name="postalCode"
+            value={data.postalCode} placeholder="postal code"
+          />
           <textarea
             onChange={formData}
             placeholder="Project Description"

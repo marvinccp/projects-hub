@@ -1,0 +1,8 @@
+.map-wrapper-container{
+    width: 100%;
+    height: 80vh;
+    background: lightskyblue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -27,7 +27,9 @@ export interface Project {
   createdAt: string;
   updateAt: string;
   tasks: Task[];
-  clientId:string
+  clientId: string;
+  address: string;
+  postalCode: string;
 }
 
 export interface Client {
@@ -36,7 +38,11 @@ export interface Client {
   email: string;
   phone: number;
   cp: number;
-  id:string
+  id: string;
+}
+
+export interface ProjectWithCoordinates extends Project {
+  coordinates: { lat: number; lon: number } | null;
 }
 
 export type allUser = User | Task | Project;
