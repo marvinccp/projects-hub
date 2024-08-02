@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { getCoordinates } from "../../helpers/getCoordinates";
 import { Project, ProjectWithCoordinates } from "../../interfaces/types";
 import { getProjects } from "../../helpers/getData";
@@ -49,15 +49,17 @@ export const MapProjects = () => {
     iconAnchor: [16, 32],
     popupAnchor: [0, -32],
   });
+
+  
   return (
-    <section>
+    <Suspense fallback= 'Loading . . .'>
       <div>
         <MapContainer
           maxZoom={18}
           center={defaultCenter}
           zoom={10}
           style={{ height: "80vh", width: "100%" }}
-        >
+          >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {projectsLocations.map((project, index) => (
             <Marker
@@ -79,6 +81,6 @@ export const MapProjects = () => {
           ))}
         </MapContainer>
       </div>
-    </section>
+          </Suspense>
   );
 };

@@ -54,7 +54,18 @@ export const ClientForm = () => {
         }
       );
       if (!response.ok) {
+        const errorData = await response.json()
+        if(response.status === 400){
+          console.log(errorData.message || {});
+        }else{
+          console.log('error ocurred');
+        }
         throw new Error("Network response was not ok");
+      }else{
+        setNotification(true);
+        setTimeout(() => {
+          setLocation("/create-project");
+        }, 2000);
       }
      await response.json();
       setData({
@@ -65,10 +76,7 @@ export const ClientForm = () => {
         phone: 0,
         cp: 0,
       });
-      setNotification(true);
-      setTimeout(() => {
-        setLocation("/create-project");
-      }, 2000);
+      
     } catch (error) {
       throw new Error("Network response was not ok");
     }
