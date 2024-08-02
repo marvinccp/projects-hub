@@ -13,7 +13,7 @@ export const UserForm = () => {
     description: "",
     image: undefined,
     position: "",
-    phone: 0,
+    phone: Number(),
   };
   const [data, setData] = useState<{
     name: string;
@@ -126,7 +126,7 @@ export const UserForm = () => {
           type="text"
           name="phone"
           placeholder="phone"
-          value={data.phone}
+          value={data.phone !== 0 ? data.phone : ''}
         />
         <input onChange={formData} type="submit" value="Create user" />
       </form>

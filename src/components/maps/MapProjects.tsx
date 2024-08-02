@@ -5,7 +5,7 @@ import { getProjects } from "../../helpers/getData";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { LatLngExpression, Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import myIcon from "../../assets/point.gif";
+import myIcon from "../../assets/point.png";
 import { Link } from "wouter";
 import "./MapProjects.css";
 
@@ -45,7 +45,7 @@ export const MapProjects = () => {
 
   const customIcon = new Icon({
     iconUrl: myIcon,
-    iconSize: [30, 26],
+    iconSize: [30, 33],
     iconAnchor: [16, 32],
     popupAnchor: [0, -32],
   });
@@ -66,9 +66,10 @@ export const MapProjects = () => {
               position={[project.coordinates!.lat, project.coordinates!.lon]}
             >
               <Popup className="pop-up">
-                <div >
-                  {project.title} <br /> {project.address}
-                  <br /> {project.postalCode}
+                <div>
+                  <h3>{project.title}</h3>
+                  <p>{project.address}</p>
+                  <p>{project.postalCode}</p>
                   <Link to={`/projects/${project.id}`}>
                     <button>View Project</button>
                   </Link>

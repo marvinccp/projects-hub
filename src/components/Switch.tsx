@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../styles/ProjectDetails.css";
+import "../components/project-details/ProjectDetails.css";
 
 interface SwitchProps {
   state: boolean;

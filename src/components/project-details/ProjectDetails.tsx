@@ -1,10 +1,10 @@
 import { startTransition, useEffect, useState } from "react";
-import { getClients, getProjects } from "../helpers/getData";
-import { Client, Project as projecType } from "../interfaces/types";
+import { getClients, getProjects } from "../../helpers/getData";
+import { Client, Project as projecType } from "../../interfaces/types";
 import { useLocation } from "wouter";
-import "../styles/ProjectDetails.css";
-import { Switch } from "./Switch";
-import { Trash } from "./Trash";
+import './ProjectDetails.css'
+import { Switch } from "../Switch";
+import { Trash } from "../Trash";
 
 export const ProjectDetails = ({ id }: { id: string }) => {
   const [projects, setProjects] = useState<projecType[]>([]);
@@ -194,14 +194,14 @@ export const ProjectDetails = ({ id }: { id: string }) => {
         <section className="task-form-container">
           <form className="taskform" onSubmit={handleSubmit}>
             <input
+            className="input-task"
               onChange={formData}
               type="text"
               name="task"
               placeholder="Task Description"
               value={data.task}
             />
-
-            <input type="submit" value="create Task" />
+            <input className="input-submit-task" type="submit" value="create Task" />
           </form>
         </section>
       </article>

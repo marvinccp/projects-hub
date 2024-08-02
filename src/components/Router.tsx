@@ -2,11 +2,11 @@ import { Route } from "wouter";
 import { lazy, Suspense } from "react";
 import { Home } from "./Home";
 import '../styles/Router.css'
-import { ProjectDetails } from "./ProjectDetails";
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
 import { SignIn } from "./login/SignIn";
 import { MapWrapper } from "./MapWrapper";
+import { ProjectDetails } from './project-details/ProjectDetails';
 
 export const Router = () => {
   const ProjectsPage = lazy(() => import("./ProjectsPage"));
