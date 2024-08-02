@@ -4,7 +4,7 @@ import { Home } from "./Home";
 import '../styles/Router.css'
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
-import { SignIn } from "./login/SignIn";
+// import { SignIn } from "./login/SignIn";
 import { MapWrapper } from "./MapWrapper";
 import { ProjectDetails } from './project-details/ProjectDetails';
 
@@ -24,8 +24,8 @@ export const Router = () => {
           <Link to="/">Home</Link>
         </button> */}
         <Route path={"/projects"} component={() => <ProjectsPage />} />
-        <Route path={"/"} component={() => <SignIn />} />
-        <Route path={"/home"} component={() => <Home />} />
+        {/* <Route path={"/"} component={() => <SignIn />} /> */}
+        <Route path={"/"} component={() => <Home />} />
         <Route path={"/create-project"} component={() => <ProjectsForm />} />
         <Route path={"/create-user"} component={() => <UserForm />} />
         <Route path={"/create-client"} component={() => <ClientForm />} />
