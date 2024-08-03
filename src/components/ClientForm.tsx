@@ -4,8 +4,10 @@ import { useLocation } from "wouter";
 
 export const ClientForm = () => {
   const [, setLocation] = useLocation();
+  const [formError, setFormError] = useState([]);
+  const [errorForm, setErrorForm] = useState(false);
+  console.log(formError);
   const [notification, setNotification] = useState<boolean>(false);
-
 
   const initialData = {
     name: "",
@@ -13,7 +15,7 @@ export const ClientForm = () => {
     email: "",
     adress: "",
     phone: Number(),
-    cp:  Number(),
+    cp: Number(),
   };
   const [data, setData] = useState<{
     name: string;
@@ -54,29 +56,29 @@ export const ClientForm = () => {
         }
       );
       if (!response.ok) {
-        const errorData = await response.json()
-        if(response.status === 400){
-          console.log(errorData.message || {});
-        }else{
-          console.log('error ocurred');
+        const errorData = await response.json();
+        if (response.status === 400) {
+          setFormError(errorData.message || {});
+          setErrorForm(true);
+        } else {
+          console.log("error ocurred");
         }
         throw new Error("Network response was not ok");
-      }else{
+      } else {
         setNotification(true);
         setTimeout(() => {
           setLocation("/create-project");
         }, 2000);
       }
-     await response.json();
+      await response.json();
       setData({
         name: "",
         last: "",
         email: "",
         adress: "",
-        phone: 0,
-        cp: 0,
+        phone: Number(),
+        cp: Number(),
       });
-      
     } catch (error) {
       throw new Error("Network response was not ok");
     }
@@ -88,29 +90,40 @@ export const ClientForm = () => {
   return (
     <section className="form-client-container">
       <form onSubmit={createClient}>
-      <h4 style={{
-        marginBottom:'30px'
-      }}>CREATE CLIENT</h4>
-        <input onChange={formData} type="text" name="name" placeholder="name" value={data.name}/>
+        <h4
+          style={{
+            marginBottom: "30px",
+          }}
+        >
+          CREATE CLIENT
+        </h4>
+
         <input
           onChange={formData}
           type="text"
-          name="last"
-          placeholder="last name"
-          value={data.last}
+          name="name"
+          placeholder={errorForm ? "name is required" : "name *"}
+          value={data.name}
         />
         <input
           onChange={formData}
           type="text"
+          name="last"
+          placeholder={errorForm ? "last name is required" : "last name *"}
+          value={data.last}
+        />
+        <input
+          onChange={formData}
+          type="email"
           name="email"
-          placeholder="e-mail"
+          placeholder={errorForm ? "email is required" : "email *"}
           value={data.email}
         />
         <input
           onChange={formData}
           type="text"
           name="adress"
-          placeholder="adress"
+          placeholder={errorForm ? "address is required" : "address *"}
           value={data.adress}
         />
         <input
@@ -118,14 +131,14 @@ export const ClientForm = () => {
           type="text"
           name="phone"
           placeholder="phone"
-          value={data.phone !== 0 ? data.phone : ''}
+          value={data.phone !== 0 ? data.phone : ""}
         />
         <input
           onChange={formData}
           type="text"
           name="cp"
-          placeholder="postal code"
-          value={data.cp !== 0 ? data.cp : ''}
+          placeholder={errorForm ? "postal code is required" : "postal code *"}
+          value={data.cp !== 0 ? data.cp : ""}
         />
         <input onChange={formData} type="submit" value="Create Client" />
       </form>
