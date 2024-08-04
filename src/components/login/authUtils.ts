@@ -12,7 +12,7 @@ export const refreshToken = async () => {
     return;
   }
 
-  const response = await fetch("http://localhost:3000/auth/refresh-token", {
+  const response = await fetch("https://nest-basic-production.up.railway.app/auth/refresh-token", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ refreshToken: storedRefreshToken }),
