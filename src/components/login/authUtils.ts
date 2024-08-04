@@ -1,10 +1,9 @@
 export const isTokenExpired = (token: string): boolean => {
-  return !token ? true:false
+  return !token ? true : false;
   const payload = JSON.parse(atob(token.split(".")[1]));
   const expired = payload.exp * 1000;
   return Date.now() >= expired;
 };
-
 
 export const refreshToken = async () => {
   const storedRefreshToken = localStorage.getItem("refreshToken");
@@ -42,14 +41,21 @@ export const fetchWithAuth = async (
   let accessToken = localStorage.getItem("accessToken");
 
   if (!accessToken) {
-    console.error('No access token available');
-    throw new Error('No access token available');
+    console.error("No access token available");
+    throw new Error("No access token available");
   }
-console.log(isTokenExpired(accessToken));
-  if (accessToken && isTokenExpired(accessToken)) {
-    accessToken = await refreshToken();
-  } else {
-    console.error("Could not refresh access token");
+  console.log(isTokenExpired(accessToken));
+  if (isTokenExpired(accessToken)) {
+    try {
+      accessToken = await refreshToken();
+      if (!accessToken) {
+        throw new Error("Unable to refresh access token");
+      }
+      localStorage.setItem("accessToken", accessToken); 
+    } catch (error) {
+      console.error("Token refresh failed", error);
+      throw new Error("Token refresh failed");
+    }
   }
 
   const response = await fetch(url, {
@@ -59,7 +65,7 @@ console.log(isTokenExpired(accessToken));
       Authorization: `Bearer ${accessToken}`,
     },
   });
-console.log(response);
+  console.log(response);
   if (response.status === 401) {
     console.error("Unauthorized request");
   }

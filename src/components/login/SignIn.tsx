@@ -11,7 +11,7 @@ export const SignIn = () => {
     email: "",
     password: "",
   });
-
+console.log(data);
   const formData = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setData((prev) => ({
