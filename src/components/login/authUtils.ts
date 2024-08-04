@@ -59,7 +59,7 @@ console.log(isTokenExpired(accessToken));
       Authorization: `Bearer ${accessToken}`,
     },
   });
-
+console.log(response);
   if (response.status === 401) {
     console.error("Unauthorized request");
   }
