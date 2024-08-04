@@ -5,10 +5,10 @@ export const SignIn = () => {
   const [, setLocation] = useLocation();
   const [notification, setNotification] = useState<boolean>(false);
   const [data, setData] = useState<{
-    userName: string;
+    email: string;
     password: string;
   }>({
-    userName: "",
+    email: "",
     password: "",
   });
 
@@ -20,36 +20,72 @@ export const SignIn = () => {
     }));
   };
 
-  const handleLogin = () => {
-    if (data.userName === "user" && data.password === "1234") {
+  const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const dataToSend = JSON.stringify(data);
+    console.log(dataToSend);
+    try {
+      const response = await fetch("http://localhost:3000/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: dataToSend,
+      });
+      console.log(response);
+      if (!response.ok) {
+        throw new Error("No");
+      }
+
+      const { access_token, refreshToken, user} = await response.json();
+      console.log(access_token, refreshToken);
+      localStorage.setItem("accessToken", access_token);
+      localStorage.setItem("refreshToken", refreshToken);
+      localStorage.setItem('user', JSON.stringify(user))
       setLocation("/home");
+      setNotification(true);
+      setData({
+        email: "",
+        password: "",
+      });
+    } catch (error) {
+      console.log(error);
+      setData({
+        email: "",
+        password: "",
+      });
     }
-    setNotification(true);
   };
 
   if (notification) {
-    return <h1 style={{
-      background:'lightpink', 
-      width:'50%',
-      textAlign:'center',
-      height:'30px',
-    paddingTop:'5px',
-    borderRadius:'10px'
-    }}>No eres bienvenid@</h1>;
+    return (
+      <h1
+        style={{
+          background: "lightpink",
+          width: "50%",
+          textAlign: "center",
+          height: "30px",
+          paddingTop: "5px",
+          borderRadius: "10px",
+        }}
+      >
+        No eres bienvenid@
+      </h1>
+    );
   }
   return (
     <form onSubmit={handleLogin}>
       <input
-        value={data.userName}
+        value={data.email}
         onChange={formData}
         type="text"
-        name="userName"
+        name="email"
+        placeholder="email"
       />
       <input
         value={data.password}
         onChange={formData}
         type="text"
         name="password"
+        placeholder="password"
       />
       <input type="submit" value="Login" />
     </form>

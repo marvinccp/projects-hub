@@ -4,6 +4,7 @@ import { getClients, getUsers } from "../helpers/getData";
 import { useLocation } from "wouter";
 import "../styles/projectsFormPage.css";
 import brain from "../assets/cerebro-ideia.gif";
+import { fetchWithAuth } from "./login/authUtils";
 const timeOption = [
   { text: "15 Días", time: 15 },
   { text: "30 Días", time: 30 },
@@ -80,7 +81,7 @@ const ProjectsForm = () => {
       address: data.address,
     };
     console.log(dataToSend);
-    const response = await fetch(
+    const response = await fetchWithAuth(
       "https://nest-basic-production.up.railway.app/projects/",
       {
         method: "POST",
