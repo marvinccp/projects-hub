@@ -10,7 +10,10 @@ import { Dialog, Heading, Modal } from "react-aria-components";
 // import { UserPage } from "./UserPage";
 import { UserForm } from "./UserForm";
 import { ClientForm } from "./ClientForm";
+import { getUserRole } from "../helpers/getUserRole";
+
 export const Home = () => {
+  const userRole = getUserRole();
   // const [users, setUsers] = useState<User[]>([]);
   // useEffect(() => {
   //   const fetchUsers = async () => {
@@ -50,20 +53,26 @@ export const Home = () => {
           {/* <Link to="/create-project">
             <button className="contrast-button">Create Projects</button>
           </Link> */}
-
-          <button
-            onClick={() => setOpenUser((prev) => !prev)}
-            className="contrast-button"
-          >
-            Create User
-          </button>
-
-          <button
-            onClick={() => setOpenClient((prev) => !prev)}
-            className="contrast-button"
-          >
-            Create Client
-          </button>
+          {userRole && userRole === "admin" ? (
+            <button
+              onClick={() => setOpenUser((prev) => !prev)}
+              className="contrast-button"
+            >
+              Create User
+            </button>
+          ) : (
+            ""
+          )}
+          {userRole && userRole === "admin" ? (
+            <button
+              onClick={() => setOpenClient((prev) => !prev)}
+              className="contrast-button"
+            >
+              Create Client
+            </button>
+          ) : (
+            ""
+          )}
         </div>
       </section>
       {/* team contaner */}
@@ -83,9 +92,9 @@ export const Home = () => {
           className={"modal"}
           isDismissable
         >
-          <Heading slot="mmmmm">
+          <Heading slot="title">
             <Dialog>
-             <ClientForm />
+              <ClientForm />
             </Dialog>
           </Heading>
         </Modal>
