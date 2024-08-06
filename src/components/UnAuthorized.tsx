@@ -6,12 +6,12 @@ export const UnAuthorized = () => {
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        width:'90%',
-        height:'80vh',color:'red',
+        width:'400px',
+        height:'200px',color:'red',
         fontSize:'2rem',
-        flexDirection:'column'
+        flexDirection:'column',
     }}>
-        <h1>UnAuthorized</h1>
+        <h1>Unauthorized</h1>
         <p style={{
             fontSize:'1rem'
         }}>You do not have permission to view this page.</p>

@@ -29,10 +29,6 @@ export const Router = () => {
             <Route path={"/projects"} component={() => <ProjectsPage />} />
             <Route path={"/"} component={() => <SignIn />} />
             <Route path={"/home"} component={() => <Home />} />
-            {/* <Route
-              path={"/create-project"}
-              component={() => <ProjectsForm />}
-            /> */}
             <ProtectedRoutes
               path={"/create-project"}
               component={ProjectsForm}
