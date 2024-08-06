@@ -36,7 +36,7 @@ console.log(data);
       }
 
       const { access_token, refreshToken, user} = await response.json();
-      console.log('acces :',access_token, 'refres: ',refreshToken);
+      console.log('acces :',access_token, 'refres: ',refreshToken, user);
       localStorage.setItem("accessToken", access_token);
       localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem('user', JSON.stringify(user))

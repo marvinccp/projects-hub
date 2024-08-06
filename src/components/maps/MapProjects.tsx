@@ -27,18 +27,31 @@ export const MapProjects = () => {
 
   useEffect(() => {
     const fetchProjectsLocation = async () => {
-      const locations = await Promise.all(
+      const locations = await Promise.allSettled(
         projects.map(async (project) => {
           const { address, postalCode } = project;
           const coordinates = await getCoordinates(address, postalCode);
-          console.log(coordinates);
-          return {
-            ...project,
-            coordinates,
-          };
+          try {
+            return {
+              ...project,
+              coordinates,
+            };
+          } catch (error) {
+            console.log(error);
+            return {
+              ...project,
+              coordinates:null
+            };
+          }
+        
         })
       );
-      setprojectsLocations(locations.filter((p) => p.coordinates));
+      const successfulLocations = locations
+      .filter((result) => result.status === 'fulfilled')
+      .map((result) => (result as PromiseFulfilledResult<ProjectWithCoordinates>).value);
+
+
+      setprojectsLocations(successfulLocations);
     };
     fetchProjectsLocation();
   }, [projects]);
@@ -50,16 +63,15 @@ export const MapProjects = () => {
     popupAnchor: [0, -32],
   });
 
-  
   return (
-    <Suspense fallback= 'Loading . . .'>
+    <Suspense fallback="Loading . . .">
       <div>
         <MapContainer
           maxZoom={18}
           center={defaultCenter}
           zoom={10}
           style={{ height: "80vh", width: "100%" }}
-          >
+        >
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {projectsLocations.map((project, index) => (
             <Marker
@@ -81,6 +93,6 @@ export const MapProjects = () => {
           ))}
         </MapContainer>
       </div>
-          </Suspense>
+    </Suspense>
   );
 };
