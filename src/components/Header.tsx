@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <section className="header-container">
       <div className="logo-header-container">
-        <Link to="/">
+        <Link to="/home">
         <img className="logo-ph" src={logo} alt="logo-ph" />
         </Link>
       </div>
