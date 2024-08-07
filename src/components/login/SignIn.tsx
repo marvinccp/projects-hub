@@ -8,8 +8,8 @@ export const SignIn = () => {
     email: string;
     password: string;
   }>({
-    email: "",
-    password: "",
+    email: "admin@mail.com",
+    password: "1234",
   });
 console.log(data);
   const formData = (e: React.ChangeEvent<HTMLInputElement>) => {
